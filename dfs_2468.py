@@ -46,5 +46,6 @@ for k in range(highest, -1, -1):
                 count += 1
     count_list.append(count)
     isVisited = [[False]*n for _ in range(n)]
+    #방문여부 초기화
 
 print(max(count_list))
