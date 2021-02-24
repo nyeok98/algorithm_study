@@ -46,8 +46,10 @@ def dijkstra(start):
             if cost < distance[j[0]]:
                 distance[j[0]] = cost
 
+# 다익스트라 알고리즘을 수행
 dijkstra(start)
 
+# 모든 노드로 가기 위한 최단 거리를 출력
 for i in range(1, n+1):
     # 도달할 수 없는 경우, 무한(INFINITY)이라고 출력
     if distance[i] == INF:
