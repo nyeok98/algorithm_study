@@ -31,3 +31,4 @@ def dijkstra(start):
                 distance[i[0]] = cost
                 heapq.heappush(q, (cost, i[0]))
 ```
+###### 이 때 Python의 힙 구조에 저장되는 비용-노드번호와 통상 문제에서 제시되는 노드번호-비용 구조가 동일하지 않음으로 햇갈리지 않도록 한다.
