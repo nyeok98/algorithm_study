@@ -3,14 +3,17 @@ import sys
 input = sys.stdin.readline
 INF = int(1e9)
 
-n, m = map(int, input().split())
-start = int(input())
-graph = [[] for _ in range(n+1)]
-distance = [INF]*(n+1)
+start, end = map(int, input().split())
+graph = [[] for _ in range(100001)]
+distance = [INF]*100001
 
-for i in range(m):
-    a, b, c = map(int, input().split())
-    graph[a].append((b,c))
+graph[0].append((1,1))
+graph[100000].append((99999,1))
+for i in range(1,100000):
+    graph[i].append((i-1,1))
+    graph[i].append((i+1,1))
+    if 2*i <= 100000:
+        graph[i].append((2*i, 0))
 
 def dijkstra(start):
     q = []
@@ -28,8 +31,4 @@ def dijkstra(start):
 
 dijkstra(start)
 
-for i in range(1, n+1):
-    if distance[i] == INF:
-        print("INF")
-    else:
-        print(distance[i])
+print(distance[end])
