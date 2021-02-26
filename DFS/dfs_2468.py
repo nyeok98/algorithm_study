@@ -10,7 +10,7 @@ for _ in range(n):
     graph.append(list(map(int, input().split())))
 
 isVisited = [[False]*n for _ in range(n)]
-#단순 방문 여부처럼 나뉘는게 아니라 높이에 따른 차이이므로 visiterd 리스트를 따로 만들어준다.
+#단순 방문 여부처럼 나뉘는게 아니라 높이에 따른 차이이므로 visited 리스트를 따로 만들어준다.
 height = 0
 #현재 dfs를 실행할 때의 높이기준
 def dfs(x, y):
