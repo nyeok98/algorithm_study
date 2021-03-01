@@ -10,7 +10,7 @@ start = 0
 end = total
 
 while start <= end:
-    mid = (start + end) // 2
+    mid = (start + end) / 2
     temp_sum = 0
     lay = 0
     for i in range(0, n-1):
