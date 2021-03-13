@@ -1,21 +1,24 @@
-n = int(input())
+import heapq
+INF = int(1e9)
 
-graph = []
-for _ in range(n):
-    graph.append(list(map(int,input().split())))
+n, m = map(int, input().split())
+start = int(input())
 
-d = [[0]*(n) for _ in range(n)]
-d[0][0] = graph[0][0]
+graph = [[] for i in range(n+1)]
+distance = [INF]*(n+1)
 
-for i in range(1,n):
-    for j in range(n):
-        if j>i:
+def dijkstra(start):
+    q = []
+    heapq.heappush(q, (0, start))
+    distance[start] = 0
+
+    while q:
+        dist, now = heapq.heappop(q)
+        if distance[now] < dist:
             continue
-        if j==0:
-            d[i][j] = d[i-1][j] + graph[i][j]
-        elif j==i:
-            d[i][j] = d[i-1][j-1] + graph[i][j]
-        else:
-            d[i][j] = max(d[i-1][j-1], d[i-1][j]) + graph[i][j]
 
-print(max(d[n-1]))
+        for i in graph[now]:
+            cost = dist + i[1]
+            if cost < distance[i[0]]:
+                distance[i[0]] = cost
+                heapq.heappush(q, (cost, i[0]))
