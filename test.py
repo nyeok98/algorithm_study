@@ -1,17 +1,21 @@
-# input section
-a = [1,10,9,5,2,8,0]
-n = 7
+n = int(input())
 
-# function
-def find_second_lrgst(array, num):
-    # sort an array by insertion sort
-    for i in range(1,num):
-        for j in range(i, 0, -1):
-            if array[j] < array[j-1]:
-                array[j], array[j-1] = array[j-1], array[j]
+d = [0] * 30000
 
-    # print out the second largest number located in ahead of the last index
-    print(array[num-2])
+d[1] = 0
+d[2] = 1
+d[3] = 1
+d[4] = 2
+d[5] = 1
 
-# execution
-find_second_lrgst(a, n)
+for i in range(6, n+1):
+    if i % 5 == 0:
+        d[i] = min(d[i-1], d[i//5]) + 1
+    elif i % 3 == 0:
+        d[i] = min(d[i-1], d[i//3]) + 1
+    elif i % 2 == 0:
+        d[i] = min(d[i-1], d[i//2]) + 1
+    else:
+        d[i] = d[i-1] + 1
+
+print(d[n])

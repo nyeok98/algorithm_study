@@ -1,0 +1,20 @@
+INF = int(1e9)
+
+c, n = map(int, input().split())
+
+graph = []
+cost = [INF]*(c+1)
+
+for i in range(n):
+    graph.append(list(map(int, input().split())))
+
+print(graph)
+
+for j in graph:
+    extra = 1
+    while j[1]*extra < c:
+        cost[j[1]*extra] = min(cost[j[1]*extra], j[0]*extra)
+        extra += 1
+
+
+print(cost)
