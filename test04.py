@@ -1,39 +1,37 @@
-def solution(n, paths, gates, summits):
-    INF = int(1e9)
+import heapq
+import sys
+input = sys.stdin.readline
+INF = int(1e9)
 
-    graph = [[INF] * (n+1) for _ in range(n+1)]
+n, m = map(int, input().split())
+start = int(input())
+graph = [[] for _ in range(n+1)]  # 각 간선간의 거리 정보를 담기 위함
+distance = [INF] * (n+1)
 
-    for a in range(1, n+1):
-        for b in range(1, n+1):
-            if a == b:
-                graph[a][b] = 0
+for _ in range(m):
+    a, b, c = map(int, input().split())
+    graph[a].append((b, c))
 
-    for path in paths:
-        i, j, w = path
-        graph[i][j] = w
-        graph[j][i] = w
 
-    for k in range(1, n+1):
-        if k in summits:
+def dijkstra(start):
+    q = []
+    heapq.heappush(q, (0, start))
+    distance[start] = 0
+    while q:
+        dist, now = heapq.heappop(q)
+        if distance[now] < dist:
             continue
-        for a in range(1, n+1):
-            for b in range(1, n+1):
-                graph[a][b] = min(graph[a][b], max(graph[a][k], graph[k][b]))
-
-    submit_intensity = []
-
-    for summit in summits:
-        for gate in gates:
-            print(summit, gate)
-            submit_intensity.append(
-                [max(graph[gate][summit], graph[summit][gate]), summit])
-
-    submit_intensity = sorted(submit_intensity)
-
-    answer = [submit_intensity[0][1], submit_intensity[0][0]]
-
-    return answer
+        for i in graph[now]:
+            cost = dist + i[1]
+            if cost < distance[i[0]]:
+                distance[i[0]] = cost
+                heapq.heappush(q, (cost, i[0]))
 
 
-print(solution(7, [[1, 2, 5], [1, 4, 1], [2, 3, 1], [2, 6, 7], [
-      4, 5, 1], [5, 6, 1], [6, 7, 1]], [3, 7], [1, 5]))
+dijkstra(start)
+
+for i in range(1, n+1):
+    if distance == INF:
+        print("INF")
+    else:
+        print(distance[i])
