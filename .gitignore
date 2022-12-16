@@ -1,4 +1,4 @@
 /KAKAO_MOBILITY/*
 .DS_Store/*
-*/playground.xcworkspace/*
+*.xcworkspace
 *.xcplayground
