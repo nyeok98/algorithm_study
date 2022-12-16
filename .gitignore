@@ -3,3 +3,4 @@ KAKAO_MOBILITY/
 *.xcworkspace
 *.xcplayground
 xcuserdata/
+*.xctimeline
