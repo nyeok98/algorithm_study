@@ -25,3 +25,5 @@ let connection = [
 ]
 
 var visited = [Bool](repeating: false, count: 9)
+
+dfs(v: 1)
