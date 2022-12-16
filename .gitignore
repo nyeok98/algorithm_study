@@ -1,4 +1,5 @@
-/KAKAO_MOBILITY/*
-.DS_Store/*
+KAKAO_MOBILITY/
+.DS_Store
 *.xcworkspace
 *.xcplayground
+xcuserdata/
