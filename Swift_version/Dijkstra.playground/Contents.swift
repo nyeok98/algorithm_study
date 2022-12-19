@@ -1,19 +1,9 @@
 import Foundation
+var result = 0
+let table = [[(33000, 0)], [], [(1600, 1), (4125, 3)], [(16900, 2)]]
 
-let INF = Int.max
-
-let n = Int(readLine()!)!
-let m = Int(readLine()!)!
-var connection = [[Int]]()
-let distance = [Bool](repeating: false, count: n+1)
-
-for _ in 0...m {
-    let info = readLine()!.split(separator: " ").map({Int($0)})
-    connection[info[0]!].append(info[1]!)
-    connection[info[0]!].append(info[2]!)
+for day in table {
+    result += min(day[0], day[day.count-1])
 }
 
-let points = readLine()!.split(separator: " ").map({Int($0)})
-let start = points[0]!
-let end = points[1]!
-
+print(result)
